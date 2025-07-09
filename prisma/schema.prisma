@@ -1,0 +1,27 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Job {
+  id                  String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  title               String   @db.VarChar(255)
+  company             String   @db.VarChar(255)
+  companylogo         String?  @db.VarChar(255)
+  location            String   @db.VarChar(255)
+  jobtype             String   @db.VarChar(50)
+  experience          String   @db.VarChar(50)
+  salarymin           Int
+  salarymax           Int
+  salarydisplay       String?  @db.VarChar(50)
+  description         String
+  requirements        String[]
+  benefits            String[]
+  postedat            DateTime @default(now()) @db.Timestamp(6)
+  applicationdeadline DateTime @db.Timestamp(6)
+  isremote            Boolean
+}
