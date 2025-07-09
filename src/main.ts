@@ -9,6 +9,6 @@ async function bootstrap() {
     credentials: true,
   });
   app.useGlobalPipes(new ValidationPipe({ whitelist: true, transform: true }));
-  await app.listen(4000);
+  await app.init();
 }
 bootstrap();
