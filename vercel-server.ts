@@ -8,6 +8,10 @@ const server = express();
 
 const bootstrap = async () => {
   const app = await NestFactory.create(AppModule, new ExpressAdapter(server));
+  app.enableCors({
+    origin: process.env.CORS_ORIGIN || 'https://jobadmin-frontend.vercel.app',
+    credentials: true,
+  });
   await app.init();
 };
 
